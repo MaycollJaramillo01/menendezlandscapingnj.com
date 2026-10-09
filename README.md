@@ -1,0 +1,11 @@
+# Menendez Landscaping website
+
+Install frontend dependencies once: `npm install`
+Build static pages and the locally bundled Anime.js animations: `npm run build`
+Preview the generated files: `python -m http.server 4173 --directory public`
+Then open http://localhost:4173
+
+The estimate form posts to FormSubmit. Its first submission is held until the one-time activation link sent to info@menendezlandscapingnj.com is opened.
+The WhatsApp button uses the published business phone number; confirm the number is registered with WhatsApp before launch.
+Official social profiles were not identified in the company's published website, so no unverified social links are added.
+The home hero uses a project photo from the provided FOTOS collection.

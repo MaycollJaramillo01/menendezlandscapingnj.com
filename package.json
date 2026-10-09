@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build:js": "esbuild src/site.js --bundle --minify --format=iife --outfile=public/assets/js/site.js",
+    "build": "npm run build:js && python build_site.py"
+  },
+  "dependencies": {
+    "@tabler/icons": "^3.49.0",
+    "animejs": "^4.5.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
