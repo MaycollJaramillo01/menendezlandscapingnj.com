@@ -105,11 +105,21 @@ def header(active=""):
         </div>
       </div>'''
     nav = "".join([nav_links[0], service_dropdown] + nav_links[1:])
+    social_glyphs = {
+        "Google Business Profile": icon("map-pin"),
+        "Facebook": '<span class="header-social__glyph header-social__glyph--facebook" aria-hidden="true">f</span>',
+        "Instagram": '<span class="header-social__glyph header-social__glyph--instagram" aria-hidden="true">◎</span>',
+        "TikTok": '<span class="header-social__glyph header-social__glyph--tiktok" aria-hidden="true">♪</span>',
+    }
+    social_links = "".join(
+        f'<a href="{e(url)}" target="_blank" rel="noopener noreferrer" aria-label="{e(label)}" title="{e(label)}">{social_glyphs[label]}</a>'
+        for label, url in SOCIAL_LINKS
+    )
     return f'''<header class="site-header"><div class="site-header__inner">
       <a class="brand" href="/" aria-label="Menendez Landscaping home">{image("brand-mark.png","Menendez Landscaping","brand__image","eager")}</a>
       <a class="home-shortcut" href="/"{" aria-current=\"page\"" if active == "home" else ""}>Home</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"><span class="menu-toggle__lines" aria-hidden="true"></span><span class="sr-only">Open menu</span></button>
-      <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">{nav}
+      <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">{nav}<div class="header-social" aria-label="Follow Menendez Landscaping">{social_links}</div>
         <a class="header-phone" href="tel:{PHONE_HREF}">{icon("phone")}<span>{PHONE}</span></a><a class="button button--accent button--small" href="/contact/">Free estimate {icon("arrow-right")}</a>
       </nav>
     </div></header>'''

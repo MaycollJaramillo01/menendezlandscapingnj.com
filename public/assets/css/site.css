@@ -76,6 +76,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .primary-nav .home-nav-link { display: inline-flex; }
 .header-phone { display: inline-flex; align-items: center; gap: .45rem; white-space: nowrap; }
 .header-phone .icon { width: .96rem; height: .96rem; }
+.header-social { display: flex; align-items: center; gap: .3rem; }
+.header-social a { width: 27px; height: 27px; display: grid; place-items: center; color: #47564b; border: 1px solid var(--line); border-radius: 50%; transition: color .18s ease, background .18s ease, border-color .18s ease; }
+.header-social a:hover { color: white; background: var(--forest); border-color: var(--forest); }
+.header-social .icon { width: 14px; height: 14px; }
+.header-social__glyph { font-size: 16px; font-weight: 700; line-height: 1; }
+.header-social__glyph--instagram { font-size: 19px; }
+.header-social__glyph--tiktok { font-size: 18px; }
 .menu-toggle { display: none; }
 
 .button {
@@ -440,6 +447,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .nav-dropdown__panel { position: static; width: 100%; max-height: 45vh; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .1rem .35rem; padding: .5rem 0; border: 0; background: transparent; box-shadow: none; }
   .nav-dropdown__panel a { min-height: 36px; padding: .4rem .35rem; font-size: .78rem; }
   .primary-nav .header-phone { display: flex; }
+  .primary-nav .header-social { justify-content: flex-start; padding: .65rem 0; border-bottom: 1px solid var(--line); }
   .primary-nav .button { width: 100%; margin-top: .7rem; }
   .hero--home { min-height: 445px; align-items: flex-end; }
   .hero__image { object-position: 67% center; }
