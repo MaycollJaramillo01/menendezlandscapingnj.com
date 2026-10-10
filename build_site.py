@@ -11,6 +11,12 @@ PHONE = "(609) 516-6584"
 PHONE_HREF = "+16095166584"
 EMAIL = "info@menendezlandscapingnj.com"
 WHATSAPP = "https://wa.me/16095166584?text=Hello%20Menendez%20Landscaping%2C%20I%27d%20like%20a%20free%20estimate."
+SOCIAL_LINKS = [
+    ("Google Business Profile", "https://maps.app.goo.gl/GyWREQJ3ytXg93kK9?g_st=awb"),
+    ("Facebook", "https://www.facebook.com/share/1JGsLMpETj/"),
+    ("Instagram", "https://www.instagram.com/menendezlandscaping/"),
+    ("TikTok", "https://www.tiktok.com/t/ZTyg3cQAM/"),
+]
 
 MEDIA = {
     "hero-patio.jpeg": "a37b7802-1d73-4de1-a865-601f1908b79e.jpeg",
@@ -114,6 +120,7 @@ def footer():
       <div class="footer-links"><h2>Services</h2><a href="/services/">All services</a><a href="/services/landscaping/">Landscaping</a><a href="/services/patios/">Patios</a><a href="/services/kitchen-remodeling/">Home remodeling</a></div>
       <div class="footer-links"><h2>Company</h2><a href="/about/">About us</a><a href="/gallery/">Our work</a><a href="/contact/">Contact</a></div>
       <div class="footer-links footer-links--contact"><h2>Get in touch</h2><a href="tel:{PHONE_HREF}">{icon("phone")}<span>{PHONE}</span></a><a href="mailto:{EMAIL}">{icon("mail")}<span>{EMAIL}</span></a><span>{icon("map-pin")}<span>Hamilton, NJ</span></span></div>
+      <div class="footer-links footer-links--social"><h2>Follow us</h2>{''.join(f'<a href="{e(url)}" target="_blank" rel="noopener noreferrer">{e(label)}</a>' for label, url in SOCIAL_LINKS)}</div>
     </div><div class="footer-bottom shell"><span>© {date.today().year} Menendez Landscaping LLC</span><span>Residential &amp; commercial · Free estimates</span></div></footer>'''
 
 def schema_tag(data):
@@ -122,7 +129,7 @@ def schema_tag(data):
 
 def layout(title, description, content, route="", active="", preload="", body_class="", extra_schema=None):
     canonical = SITE + route_url(route)
-    schema = {"@context":"https://schema.org","@type":["HomeAndConstructionBusiness","LocalBusiness"],"@id":SITE + "/#business","name":"Menendez Landscaping LLC","url":SITE,"telephone":PHONE_HREF,"email":EMAIL,"logo":SITE + "/images/brand-mark.png","image":SITE + "/images/" + (preload or "hero-patio.jpeg"),"address":{"@type":"PostalAddress","addressLocality":"Hamilton","addressRegion":"NJ","postalCode":"08611","addressCountry":"US"},"areaServed":{"@type":"City","name":"Hamilton, New Jersey"},"serviceType":[item["name"] for item in SERVICES],"contactPoint":{"@type":"ContactPoint","telephone":PHONE_HREF,"email":EMAIL,"contactType":"customer service","areaServed":"US"}}
+    schema = {"@context":"https://schema.org","@type":["HomeAndConstructionBusiness","LocalBusiness"],"@id":SITE + "/#business","name":"Menendez Landscaping LLC","url":SITE,"telephone":PHONE_HREF,"email":EMAIL,"logo":SITE + "/images/brand-mark.png","image":SITE + "/images/" + (preload or "hero-patio.jpeg"),"sameAs":[url for _, url in SOCIAL_LINKS],"address":{"@type":"PostalAddress","addressLocality":"Hamilton","addressRegion":"NJ","postalCode":"08611","addressCountry":"US"},"areaServed":{"@type":"City","name":"Hamilton, New Jersey"},"serviceType":[item["name"] for item in SERVICES],"contactPoint":{"@type":"ContactPoint","telephone":PHONE_HREF,"email":EMAIL,"contactType":"customer service","areaServed":"US"}}
     preload_tag = f'<link rel="preload" as="image" href="/images/{preload}" fetchpriority="high">' if preload else ""
     extra_schema_tag = "".join(schema_tag(item) for item in (extra_schema if isinstance(extra_schema, list) else [extra_schema]) if item)
     social_image = SITE + "/images/" + (preload or "hero-patio.jpeg")
@@ -344,7 +351,7 @@ Then open http://localhost:4173
 
 The estimate form posts to FormSubmit. Its first submission is held until the one-time activation link sent to info@menendezlandscapingnj.com is opened.
 The WhatsApp button uses the published business phone number; confirm the number is registered with WhatsApp before launch.
-Official social profiles were not identified in the company's published website, so no unverified social links are added.
+Social profile links were supplied by the business and are included in the footer and LocalBusiness schema.
 The home hero uses a project photo from the provided FOTOS collection.
 """, encoding="utf-8")
 print(f"Generated {len(routes)} pages and {len(MEDIA)} image assets in public/.")

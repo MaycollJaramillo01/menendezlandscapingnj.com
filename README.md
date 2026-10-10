@@ -7,5 +7,5 @@ Then open http://localhost:4173
 
 The estimate form posts to FormSubmit. Its first submission is held until the one-time activation link sent to info@menendezlandscapingnj.com is opened.
 The WhatsApp button uses the published business phone number; confirm the number is registered with WhatsApp before launch.
-Official social profiles were not identified in the company's published website, so no unverified social links are added.
+Social profile links were supplied by the business and are included in the footer and LocalBusiness schema.
 The home hero uses a project photo from the provided FOTOS collection.
